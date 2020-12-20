@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="start">
+        <h1>Quy định trò chơi: bắn trúng viên bi màu đỏ sẽ được thưởng 1 tỷ =))</h1>
+        <button class="zoogm">START</button>
+    </div>
+    <div id="main">
+        <div id="box"></div>
+        <div id="control">
+            <div class="common up"></div>
+            <div class="common down"></div>
+            <div class="mid"></div>
+            <div class="haha" style="padding: 100px;"></div>
+        </div>
+        <button class="shoot">Bắn</button>
+    </div>
+
+</body>
+<script>
+    var width = $(window).width() - 60;
+    $(() => {
+        function animateMydiv() {
+            $('#box').animate({
+                left: width + 'px'
+            }, 1000).animate({
+                left: '0px'
+            }, 1000, animateMydiv);
+        }
+        animateMydiv();
+
+        $heightB = $(window).height();
+        $('.shoot').on('click', () => {
+            $('div#control').prepend('<div class="bullet"></div>');
+            $fly = $('.bullet').animate({
+                top: '-60px',
+            }, () => {
+                if ($fly) {
+                    $('.bullet').remove();
+                    Toastify({
+                        text: "Bắn ngu vc",
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        duration: 3000
+                    }).showToast();
+
+                }
+            });
+        });
+
+        $('.zoogm').on('click', () => {
+            var aa = confirm("Nhập tên của bạn để bắt đầu");
+            if (aa == true) {
+                var name = prompt('Ten cua ban?');
+                alert("Hello " + name);
+            } else {
+                alert("Vậy tên bạn là: dog");
+            }
+            $('#main').show(1500);
+            $('#start').hide(1500);
+        });
+
+        setInterval(() => {
+            $pos = $('#box').position();
+            $(".haha").html("left: " + $pos.left + ", top: " + $pos.top + "<br>");
+            // console.log($pos);
+            // $posB = $('.bullet').position();
+            // $(".haha").html("left: " + $posB.left + ", top: " + $posB.top + "<br>");
+        }, 100);
+    });
+</script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    #start {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(32, 71, 105);
+        position: absolute;
+    }
+    
+    #start>h1 {
+        text-align: center;
+        color: white;
+    }
+    
+    .zoogm {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 60px;
+        border-radius: 10px;
+        background-color: coral;
+        color: white;
+        cursor: pointer;
+    }
+    
+    #main {
+        width: 100%;
+        height: 375px;
+        display: none;
+    }
+    
+    #box {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        background: red;
+        border-radius: 50%;
+    }
+    
+    .common {
+        background-color: yellowgreen;
+    }
+    
+    .up {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+    }
+    
+    .down {
+        width: 160px;
+        height: 50px;
+        position: absolute;
+        bottom: 10%;
+        left: 46%;
+    }
+    
+    .mid {
+        width: 50px;
+        height: 40px;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+        top: 71%;
+        left: 50%;
+    }
+    
+    button.shoot {
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 3px;
+        background: yellow;
+        border: 1px solid black;
+        cursor: pointer;
+        position: absolute;
+        top: 85.6%;
+        left: 60%;
+    }
+    
+    button.shoot:focus {
+        outline: none;
+    }
+    
+    .bullet {
+        width: 50px;
+        height: 50px;
+        background: black;
+        border-radius: 50%;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+    }
+    
+    @media (max-width: 576px) {
+        .up {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 77%;
+            left: 41%;
+        }
+        .down {
+            width: 160px;
+            height: 50px;
+            position: absolute;
+            bottom: 10%;
+            left: 27%;
+        }
+        .mid {
+            width: 50px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 74%;
+            left: 41%;
+        }
+        button.shoot {
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 3px;
+            background: yellow;
+            border: 1px solid black;
+            cursor: pointer;
+            position: absolute;
+            top: 86%;
+            left: 70%;
+        }
+        .bullet {
+            width: 50px;
+            height: 50px;
+            background: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 74%;
+            left: 41%;
+        }
+    }
+</style>
+
+</html>
