@@ -29,17 +29,25 @@
 </body>
 <script>
     var width = $(window).width() - 60;
+    console.log('dd' + width);
     $(() => {
+        // $box = $('#box');
+        // $aa = $box.offsetHeight();
+        // console.log($aa);
+
+        // console.log($box);
+
         function animateMydiv() {
             $('#box').animate({
                 left: width + 'px'
-            }, 1000).animate({
+            }, 1500).animate({
                 left: '0px'
-            }, 1000, animateMydiv);
+            }, 1500, animateMydiv);
         }
         animateMydiv();
 
         $heightB = $(window).height();
+        console.log('hh' + $heightB);
         $('.shoot').on('click', () => {
             $('div#control').prepend('<div class="bullet"></div>');
             $fly = $('.bullet').animate({
@@ -70,6 +78,10 @@
         });
 
         setInterval(() => {
+            $dan = $('#box').position();
+            if ($dan.left >= 673 && $dan.left <= 693) {
+                alert('Chúc mừng, bạn đã trúng 10 tỷ, vui lòng đến ngân hàng để nhận.');
+            }
             $pos = $('#box').position();
             $(".haha").html("left: " + $pos.left + ", top: " + $pos.top + "<br>");
             // console.log($pos);
@@ -84,19 +96,19 @@
         padding: 0;
         box-sizing: border-box;
     }
-    
+
     #start {
         width: 100%;
         height: 100%;
         background-color: rgb(32, 71, 105);
         position: absolute;
     }
-    
+
     #start>h1 {
         text-align: center;
         color: white;
     }
-    
+
     .zoogm {
         position: absolute;
         top: 50%;
@@ -108,13 +120,13 @@
         color: white;
         cursor: pointer;
     }
-    
+
     #main {
         width: 100%;
         height: 375px;
         display: none;
     }
-    
+
     #box {
         width: 40px;
         height: 40px;
@@ -122,11 +134,11 @@
         background: red;
         border-radius: 50%;
     }
-    
+
     .common {
         background-color: yellowgreen;
     }
-    
+
     .up {
         width: 50px;
         height: 50px;
@@ -134,7 +146,7 @@
         top: 75%;
         left: 50%;
     }
-    
+
     .down {
         width: 160px;
         height: 50px;
@@ -142,7 +154,7 @@
         bottom: 10%;
         left: 46%;
     }
-    
+
     .mid {
         width: 50px;
         height: 40px;
@@ -152,7 +164,7 @@
         top: 71%;
         left: 50%;
     }
-    
+
     button.shoot {
         padding: 5px 15px;
         font-weight: bold;
@@ -164,11 +176,11 @@
         top: 85.6%;
         left: 60%;
     }
-    
+
     button.shoot:focus {
         outline: none;
     }
-    
+
     .bullet {
         width: 50px;
         height: 50px;
@@ -178,7 +190,7 @@
         top: 70%;
         left: 50%;
     }
-    
+
     @media (max-width: 576px) {
         .up {
             width: 50px;
@@ -187,6 +199,7 @@
             top: 77%;
             left: 41%;
         }
+
         .down {
             width: 160px;
             height: 50px;
@@ -194,6 +207,7 @@
             bottom: 10%;
             left: 27%;
         }
+
         .mid {
             width: 50px;
             height: 40px;
@@ -203,6 +217,7 @@
             top: 74%;
             left: 41%;
         }
+
         button.shoot {
             padding: 5px 15px;
             font-weight: bold;
@@ -214,6 +229,7 @@
             top: 86%;
             left: 70%;
         }
+
         .bullet {
             width: 50px;
             height: 50px;
